@@ -1,0 +1,183 @@
+body {
+    margin: 0;
+    font-family: Arial;
+    background: linear-gradient(to bottom, #ffe6f0, #fff);
+    text-align: center;
+}
+
+/* PORTADA */
+.portada {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: linear-gradient(to right, #ff99cc, #ffccff);
+    color: white;
+}
+
+/* BOTONES */
+button {
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    background: white;
+    color: #ff4da6;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #ff4da6;
+    color: white;
+}
+
+/* GALERÍA */
+.galeria {
+    display: none;
+    padding: 30px;
+}
+
+/* MENU DE RECUERDOS */
+.menu-recuerdos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin: 20px;
+}
+
+.menu-recuerdos button {
+    padding: 15px;
+    border-radius: 20px;
+    background: #ff99cc;
+    color: white;
+    font-weight: bold;
+}
+
+.menu-recuerdos button:hover {
+    background: #ff4da6;
+}
+
+/* VISOR */
+.visor {
+    display: none;
+    text-align: center;
+    animation: aparecer 0.5s ease;
+}
+
+.visor img {
+    width: 80%;
+    max-width: 400px;
+    border-radius: 15px;
+    margin-top: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.visor p {
+    color: #ff4da6;
+    font-size: 1.2em;
+    margin-top: 15px;
+}
+
+/* FRASES */
+.frases {
+    margin-top: 20px;
+    color: #ff4da6;
+}
+
+/* ANIMACIÓN */
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* 🌸 PETALOS */
+#petalos span {
+    position: fixed;
+    top: -10px;
+    font-size: 20px;
+    animation: caer linear infinite;
+}
+
+@keyframes caer {
+    to {
+        transform: translateY(100vh);
+    }
+}
+
+/* 💌 CARTA */
+.carta {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    justify-content: center;
+    align-items: center;
+}
+
+.contenido-carta {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 400px;
+    text-align: center;
+}
+
+.contenido-carta h2 {
+    color: #ff4da6;
+}
+
+/* BOTÓN FINAL */
+.btn-final {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #ff4da6;
+    color: white;
+    padding: 15px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+/* 📱 MODO CELULAR */
+@media (max-width: 600px) {
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    .portada p {
+        font-size: 1.1em;
+    }
+
+    button {
+        padding: 12px;
+        font-size: 1em;
+    }
+
+    .menu-recuerdos {
+        grid-template-columns: 1fr; /* una columna */
+    }
+
+    .visor img {
+        width: 95%;
+    }
+
+    .contenido-carta {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .btn-final {
+        padding: 12px;
+        font-size: 0.9em;
+    }
+}

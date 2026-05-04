@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Feliz Día Mamá 💖</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+
+<!-- 🎵 MÚSICA -->
+<audio id="musica" loop>
+    <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<!-- 🌸 PETALOS -->
+<div id="petalos"></div>
+
+<div class="portada">
+    <h1>💖 Feliz Día Mamá 💖</h1>
+    <p>Elizabeth Olivares Valqui</p>
+    <button onclick="iniciarSorpresa()">Ver sorpresa</button>
+</div>
+
+<div class="galeria" id="galeria">
+    <h2>Elige un recuerdo especial 💖</h2>
+
+    <!-- BOTONES -->
+    <div class="menu-recuerdos">
+        <button onclick="mostrarRecuerdo(1)">💖 Recuerdo 1</button>
+        <button onclick="mostrarRecuerdo(2)">🌷 Recuerdo 2</button>
+        <button onclick="mostrarRecuerdo(3)">❤️ Recuerdo 3</button>
+        <button onclick="mostrarRecuerdo(4)">✨ Recuerdo 4</button>
+        <button onclick="mostrarRecuerdo(5)">🙏 Recuerdo 5</button>
+        <button onclick="mostrarRecuerdo(6)">💕 Recuerdo 6</button>
+        <button onclick="mostrarRecuerdo(7)">💓 Recuerdo 7</button>
+        <button onclick="mostrarRecuerdo(8)">🌹 Recuerdo 8</button>
+    </div>
+
+    <!-- VISOR -->
+    <div id="visor" class="visor">
+        <img id="imgRecuerdo">
+        <p id="textoRecuerdo"></p>
+        <button onclick="cerrarRecuerdo()">⬅ Volver</button>
+    </div>
+
+    <div class="frases">
+        <p>"Mamá, aunque la distancia nos separe, mi amor siempre está contigo."</p>
+        <p>"Eres mi fuerza, mi guía y mi hogar."</p>
+        <p>"Gracias por darme todo sin pedir nada."</p>
+    </div>
+</div>
+
+<!-- 💌 CARTA FINAL -->
+<div id="carta" class="carta">
+    <div class="contenido-carta">
+        <h2>💖 Para ti mamá 💖</h2>
+        <p>
+            Mamá Elizabeth, aunque la distancia nos separe,  
+            quiero que sepas que siempre estás en mi corazón.  
+            Gracias por tu amor, tu esfuerzo y todo lo que haces por mí.  
+        </p>
+        <p>
+            Te amo muchísimo 💕  
+        </p>
+        <button onclick="cerrarCarta()">Cerrar</button>
+    </div>
+</div>
+
+<button class="btn-final" onclick="abrirCarta()">💌 Mensaje especial</button>
+
+<script src="script.js"></script>
+
+</body>
+</html>
