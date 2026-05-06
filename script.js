@@ -1,63 +1,52 @@
-function mostrarGaleria() {
-    document.querySelector(".portada").style.display = "none";
-    document.getElementById("galeria").style.display = "block";
-}
-
-/* 🎵 iniciar sorpresa */
+/* 🎵 INICIAR */
 function iniciarSorpresa() {
     mostrarGaleria();
 
     let audio = document.getElementById("musica");
-
     if (audio) {
-        audio.muted = false;
-        audio.volume = 1;
-
-        audio.currentTime = 0;
-
-        audio.play()
-        .then(() => {
-            console.log("Música iniciada ✅");
-        })
-        .catch(error => {
-            console.log("Error audio:", error);
-        });
+        audio.volume = 0.5;
+        audio.play().catch(() => {});
     }
 }
 
-/* 💖 corazones animados */
-setInterval(() => {
-    let corazon = document.createElement("div");
-    corazon.innerHTML = "💖";
-    corazon.style.position = "fixed";
-    corazon.style.left = Math.random() * 100 + "vw";
-    corazon.style.top = "100%";
-    corazon.style.fontSize = "20px";
-
-    document.body.appendChild(corazon);
-
-    let subir = setInterval(() => {
-        corazon.style.top = (corazon.offsetTop - 5) + "px";
-    }, 30);
+/* 🎬 MOSTRAR GALERÍA */
+function mostrarGaleria() {
+    let portada = document.querySelector(".portada");
+    portada.style.opacity = "0";
 
     setTimeout(() => {
-        clearInterval(subir);
-        corazon.remove();
-    }, 4000);
-}, 500);
-
-/* 🔍 abrir imagen */
-function abrirImagen(src) {
-    document.getElementById("lightbox").style.display = "flex";
-    document.getElementById("imgGrande").src = src;
+        portada.style.display = "none";
+        document.getElementById("galeria").style.display = "block";
+    }, 800);
 }
 
-/* ❌ cerrar imagen */
-function cerrarImagen() {
-    document.getElementById("lightbox").style.display = "none";
+/* 💖 FRASES */
+const frases = [
+    "Eres mi razón de seguir 💖",
+    "Gracias por todo mamá 🌸",
+    "Siempre estaré para ti 💕"
+];
+
+let i = 0;
+setInterval(() => {
+    let f = document.getElementById("fraseDinamica");
+    if (f) {
+        f.innerText = frases[i];
+        i = (i + 1) % frases.length;
+    }
+}, 3000);
+
+/* 🎵 CONTROL MÚSICA */
+function toggleMusica() {
+    let audio = document.getElementById("musica");
+    if (audio.paused) {
+        audio.play();
+    } else {
+        audio.pause();
+    }
 }
 
-/* 🌸 PETALOS ANIMADOS */
+/* 🌸 PÉTALOS */
 setInterval(() => {
     let petalo = document.createElement("span");
     petalo.innerHTML = "🌸";
@@ -66,30 +55,36 @@ setInterval(() => {
 
     document.getElementById("petalos").appendChild(petalo);
 
-    setTimeout(() => {
-        petalo.remove();
-    }, 5000);
+    setTimeout(() => petalo.remove(), 5000);
 }, 300);
 
-/* 💌 CARTA */
+/* 💌 ABRIR CARTA (SOLO MUESTRA EL SOBRE) */
 function abrirCarta() {
-    document.getElementById("carta").style.display = "flex";
+    let carta = document.getElementById("carta");
+    carta.style.display = "flex";
+
+    let sonido = document.getElementById("sonidoCarta");
+    if (sonido) {
+        sonido.play().catch(() => {});
+    }
 }
 
+/* ❌ CERRAR CARTA */
 function cerrarCarta() {
-    document.getElementById("carta").style.display = "none";
+    let carta = document.getElementById("carta");
+
+    carta.style.opacity = "0";
+
+    setTimeout(() => {
+        carta.style.display = "none";
+        carta.style.opacity = "1";
+    }, 300);
 }
 
-/* GIRAR TARJETAS AL HACER CLIC */
-document.querySelectorAll(".flip-card").forEach(card => {
-    card.addEventListener("click", () => {
-        card.classList.toggle("active");
-    });
-});
-
+/* 💖 RECUERDOS */
 const recuerdos = [
     { img: "imagenes/img1.jpeg", texto: "💖 Gracias por tu amor infinito" },
-    { img: "imagenes/img2.jpeg", texto: "🌷 Eres mi mayor inspiración" },
+    { img: "imagenes/img2.jpeg", texto: "🌷 Eres mi inspiración" },
     { img: "imagenes/img3.jpeg", texto: "❤️ Siempre estás conmigo" },
     { img: "imagenes/img4.jpeg", texto: "✨ Tu sonrisa ilumina mi vida" },
     { img: "imagenes/img5.jpeg", texto: "🙏 Gracias por todo mamá" },
@@ -100,9 +95,7 @@ const recuerdos = [
 
 function mostrarRecuerdo(i) {
     document.querySelector(".menu-recuerdos").style.display = "none";
-
-    let visor = document.getElementById("visor");
-    visor.style.display = "block";
+    document.getElementById("visor").style.display = "block";
 
     document.getElementById("imgRecuerdo").src = recuerdos[i - 1].img;
     document.getElementById("textoRecuerdo").innerText = recuerdos[i - 1].texto;
@@ -112,3 +105,22 @@ function cerrarRecuerdo() {
     document.querySelector(".menu-recuerdos").style.display = "grid";
     document.getElementById("visor").style.display = "none";
 }
+
+/* 🔥 EVENTOS (cuando ya cargó todo) */
+window.onload = function () {
+
+    /* 💌 CLICK FUERA CIERRA */
+    document.getElementById("carta").addEventListener("click", function(e) {
+        if (e.target === this) {
+            cerrarCarta();
+        }
+    });
+
+    /* 💖 SOBRE SE ABRE AL HACER CLICK */
+    let sobre = document.getElementById("sobre");
+    if (sobre) {
+        sobre.addEventListener("click", function() {
+            this.classList.toggle("abierto");
+        });
+    }
+};
